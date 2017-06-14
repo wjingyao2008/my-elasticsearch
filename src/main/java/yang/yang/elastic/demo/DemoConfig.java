@@ -26,14 +26,10 @@ public class DemoConfig {
     @Value("${elasticsearch.port}")
     private int EsPort;
 
-    @Value("${elasticsearch.clustername}")
-    private String EsClusterName;
     @Bean
     public Client client() throws Exception {
-//
         Settings esSettings = Settings.builder()
                 .put("cluster.name", "elasticsearch")
-//                .put("client.transport.sniff", true)
                 .put("client.transport.ignore_cluster_name", true)
                 .build();
         TransportClient transportClient = TransportClient.builder().settings(esSettings).build()
