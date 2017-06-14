@@ -19,7 +19,7 @@ public class CarServiceImpl implements CarService {
     }
 
     public Car findOne(String id) {
-        return this.carRepository.findById(id).orElse(null);
+        return this.carRepository.findOne(id);
     }
 
     @Override
