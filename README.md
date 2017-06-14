@@ -3,7 +3,8 @@ this is my elasticsearch learning
 
 ## Install elastic search on mac
 ### install elasticsearch by brew:
-```brew install elasticsearch```
+1. ```brew install elasticsearch```
+2.  configuration file: /usr/local/etc/elasticsearch/elasticsearch.yml
 ### start the elasticsearch service
 commands:
 ```
@@ -17,6 +18,9 @@ commands:
 ### Set up on chrome
 1. install sense plugin on chrome
 2. set server to local: http://localhost:9200
+3. get cluster name, it will be used in spring elasticsearch code: 
+
+```curl -XGET 'http://localhost:9200/_nodes/cluster_name'```
 ### Query in DSL:
 #### get all:
 ```
