@@ -12,4 +12,6 @@ public interface CarService {
     long countAll();
 
     Iterable<Car> findAll();
+
+    Car save(Car car);
 }

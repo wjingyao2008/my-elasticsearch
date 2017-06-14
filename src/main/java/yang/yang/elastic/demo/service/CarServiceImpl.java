@@ -31,4 +31,9 @@ public class CarServiceImpl implements CarService {
     public Iterable<Car> findAll() {
         return this.carRepository.findAll();
     }
+
+    @Override
+    public Car save(Car car) {
+        return this.carRepository.save(car);
+    }
 }

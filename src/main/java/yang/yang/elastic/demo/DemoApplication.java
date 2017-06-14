@@ -20,15 +20,12 @@ public class DemoApplication implements CommandLineRunner {
 
 	static final Logger LOGGER = LoggerFactory.getLogger(DemoApplication.class);
 
-	@Autowired
-	CarService carService;
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
 	@Override
 	public void run(String... strings) throws Exception {
-		carService.findAll().forEach(it->LOGGER.info(it.toString()));
-		LOGGER.info("done");
+		LOGGER.info("started");
 	}
 }

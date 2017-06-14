@@ -6,7 +6,7 @@ package yang.yang.elastic.demo.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
-@Document(indexName = "cars", type = "transactions")
+@Document(indexName = "the-cars", type = "car")
 public class Car {
 
     @Id
@@ -22,6 +22,9 @@ public class Car {
         this.color = color;
         this.make = make;
         this.sold = sold;
+    }
+
+    public Car() {
     }
 
     public String getId() {
