@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import yang.yang.elastic.demo.model.Car;
 import yang.yang.elastic.demo.repository.CarRepository;
 
+import java.util.List;
+
 /**
  * Created by yanyan on 2017/06/14.
  */
@@ -35,5 +37,10 @@ public class CarServiceImpl implements CarService {
     @Override
     public Car save(Car car) {
         return this.carRepository.save(car);
+    }
+
+    @Override
+    public List<Car> findByBrand(String brandName) {
+        return this.carRepository.findByBrand(brandName);
     }
 }

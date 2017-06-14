@@ -10,6 +10,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import yang.yang.elastic.demo.model.Car;
 import yang.yang.elastic.demo.service.CarService;
 
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -34,11 +36,36 @@ public class DemoApplicationTests {
 
 	@Test
 	public void testSave() {
-		Car car = new Car("1001", 100000, "red", "honda", "2014-02-12");
+		Car car = new Car("1001", 100000, "red", "BMW Corporate", "2014-02-12", "BMW X5");
 		carService.save(car);
 		Car save = carService.findOne("1001");
 		assertNotNull(save.getId());
 		assertEquals("red", save.getColor());
-		assertEquals("honda", save.getMake());
+		assertEquals("BMW", save.getMake());
 	}
+
+	@Test
+	public void testSearchByBrand() {
+		Car car = new Car("1001", 100000, "red", "BMW Corporate", "2014-02-12", "BMW X5");
+		carService.save(car);
+		List<Car> cars = carService.findByBrand("BMW X5");
+		assertEquals(1, cars.size());
+		Car searchResult = cars.get(0);
+		assertNotNull(searchResult.getId());
+		assertEquals("red", searchResult.getColor());
+		assertEquals("BMW", searchResult.getMake());
+	}
+
+	@Test
+	public void testSearchByBrandPart() {
+		Car car = new Car("1001", 100000, "red", "BMW Corporate", "2014-02-12", "BMW X5");
+		carService.save(car);
+		List<Car> cars = carService.findByBrand("X5");
+		assertEquals(1, cars.size());
+		Car searchResult = cars.get(0);
+		assertNotNull(searchResult.getId());
+		assertEquals("red", searchResult.getColor());
+		assertEquals("BMW", searchResult.getMake());
+	}
+
 }

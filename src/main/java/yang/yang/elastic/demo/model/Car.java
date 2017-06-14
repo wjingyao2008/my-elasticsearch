@@ -5,6 +5,9 @@ package yang.yang.elastic.demo.model;
  */
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldIndex;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 @Document(indexName = "the-cars", type = "car")
 public class Car {
@@ -15,13 +18,16 @@ public class Car {
     private String color;
     private String make;
     private String sold;
+    @Field(type = FieldType.String,index = FieldIndex.not_analyzed)
+    private String brand;
 
-    public Car(String id, int price, String color, String make, String sold) {
+    public Car(String id, int price, String color, String make, String sold, String brand) {
         this.id = id;
         this.price = price;
         this.color = color;
         this.make = make;
         this.sold = sold;
+        this.brand = brand;
     }
 
     public Car() {
@@ -65,5 +71,13 @@ public class Car {
 
     public void setSold(String sold) {
         this.sold = sold;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 }

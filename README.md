@@ -57,7 +57,27 @@ GET /cars/transactions/_search
     }
 }
 ```
-###
+
+### delete:
+curl -XDELETE 'http://localhost:9200/twitter/tweet/1'
+
+```DELETE the-cars```
+### mapping:
+```GET _mapping?pretty=true```
+
+### search:
+```GET _search
+   {
+      "query": {
+          "match": {
+             "brand": "BMW X5"
+          }
+      }
+      , "size": 1
+   }
+ ```
+ 
+ 
 ## MAVEN PROJECT
 ### 1. start a maven project 
  https://start.spring.io/
