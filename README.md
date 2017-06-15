@@ -14,6 +14,7 @@ due to compatibility, elasticsearch-2.4.5 is recommend .
 
 ```curl -XGET 'http://localhost:9200/_nodes/cluster_name'```
 ### Query in DSL:
+
 #### put data:
 ```$xslt
 POST /cars/transactions/_bulk

@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 import yang.yang.elastic.demo.model.Car;
-import yang.yang.elastic.demo.service.CarService;
+import yang.yang.elastic.demo.service.DemoService;
 
 import java.util.List;
 
@@ -20,25 +20,25 @@ import static org.junit.Assert.assertNotNull;
 public class DemoApplicationTests {
 
 	@Autowired
-	CarService carService;
+	DemoService demoService;
 
 	@Autowired
 	private ElasticsearchTemplate esTemplate;
 
 	@Before
 	public void before() {
-		esTemplate.deleteIndex(Car.class);
-		esTemplate.createIndex(Car.class);
-		esTemplate.putMapping(Car.class);
-		esTemplate.refresh(Car.class);
+//		esTemplate.deleteIndex(Car.class);
+//		esTemplate.createIndex(Car.class);
+//		esTemplate.putMapping(Car.class);
+//		esTemplate.refresh(Car.class);
 	}
 
 
 	@Test
 	public void testSave() {
 		Car car = new Car("1001", 100000, "red", "BMW Corporate", "2014-02-12", "BMW X5");
-		carService.save(car);
-		Car save = carService.findOne("1001");
+		demoService.saveCar(car);
+		Car save = demoService.findOneCar("1001");
 		assertNotNull(save.getId());
 		assertEquals("red", save.getColor());
 		assertEquals("BMW", save.getMake());
@@ -47,8 +47,8 @@ public class DemoApplicationTests {
 	@Test
 	public void testSearchByBrand() {
 		Car car = new Car("1001", 100000, "red", "BMW Corporate", "2014-02-12", "BMW X5");
-		carService.save(car);
-		List<Car> cars = carService.findByBrand("BMW X5");
+		demoService.saveCar(car);
+		List<Car> cars = demoService.findByCarBrand("BMW X5");
 		assertEquals(1, cars.size());
 		Car searchResult = cars.get(0);
 		assertNotNull(searchResult.getId());
@@ -59,8 +59,8 @@ public class DemoApplicationTests {
 	@Test
 	public void testSearchByBrandPart() {
 		Car car = new Car("1001", 100000, "red", "BMW Corporate", "2014-02-12", "BMW X5");
-		carService.save(car);
-		List<Car> cars = carService.findByBrand("X5");
+		demoService.saveCar(car);
+		List<Car> cars = demoService.findByCarBrand("X5");
 		assertEquals(1, cars.size());
 		Car searchResult = cars.get(0);
 		assertNotNull(searchResult.getId());
